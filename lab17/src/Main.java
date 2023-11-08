@@ -1,16 +1,17 @@
 public class Main {
     public static void main(String[] args) {
-        ConcreteMediator mediator = new ConcreteMediator();
+        LibraryManager mediator = new LibraryManager();
 
-        Component component1 = new ConcreteComponent(mediator);
-        Component component2 = new ConcreteComponent(mediator);
-        Component component3 = new ConcreteComponent(mediator);
+        LibraryMember student1 = new Student(mediator, "student1");
+        LibraryMember student2 = new Student(mediator, "student2");
 
-        mediator.registerComponent(component1);
-        mediator.registerComponent(component2);
-        mediator.registerComponent(component3);
+        mediator.registerLibraryMember(student1);
+        mediator.registerLibraryMember(student2);
 
-        component1.send("Hello");
-        component2.send("Hi");
+        mediator.borrowBook(student1, "Book 1");
+        mediator.borrowBook(student2, "Book 2");
+
+        mediator.returnBook(student1, "Book 1");
+        mediator.borrowBook(student2, "Book 1");
     }
 }
